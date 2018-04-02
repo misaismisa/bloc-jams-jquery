@@ -4,8 +4,24 @@ class Player {
     this.playState = 'stopped';
     this.volume = 80;
     this.soundObject = new buzz.sound(this.currentlyPlaying.soundFileUrl);
-
   }
+
+  prettyTime(timeInSeconds) {
+    var seconds = Number.parseFloat(timeInSeconds);
+    var wholeSeconds = Math.floor(seconds);
+    var minutes = Math.floor(wholeSeconds / 60);
+
+    var remainingSeconds = wholeSeconds % 60;
+    var output = minutes + ':';
+
+    if (remainingSeconds < 10) {
+      output += '0';
+    }
+
+    output += remainingSeconds;
+    return output;
+  }
+
 
   getDuration() {
     return this.soundObject.getDuration();
@@ -48,6 +64,6 @@ class Player {
     this.volume = percent;
     this.soundObject.setVolume(percent);
   }
-}
+};
 
 const player = new Player();

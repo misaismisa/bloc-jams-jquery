@@ -1,6 +1,10 @@
 class Helper {
   playPauseAndUpdate (song) {
-    player.playPause();
+    helper.playPauseAndUpdate();
+
+    $('#time-control input').on('input', function (event) {
+      player.skipTo(event.target.value);
+    });
 
     setInterval( () => {
       if (player.playState !== 'playing') {return;}
@@ -12,8 +16,7 @@ class Helper {
       $('#time-control input').val(percent);
     }, 1000);
 
-    player.playPause.replace (helper.playPauseAndUpdate);
-  }
+  };
 
 }
 
